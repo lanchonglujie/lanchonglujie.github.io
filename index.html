@@ -1,62 +1,42 @@
+<!DOCTYPE html>
 <html>
 <head>
-<style type="text/css">
-</style>
+    <meta charset="UTF-8">
+    <title>登录界面</title>
+    <link rel="stylesheet" href="css/animate.css">
+    <link href="css/index.css" rel="stylesheet">
 </head>
 <body>
-name:<input type="text" id="input_name"/>
-pass:<input type="password" id="input_pass"/>
-<input type="button" value="login" onclick="validate()"/>
-<script type="text/javascript">
-function loadXMLDoc(dname)
-{
-try //Internet Explorer
-{
-xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
-}
-catch(e)
-{
-try //Firefox, Mozilla, Opera, etc.
-{
-xmlDoc=document.implementation.createDocument("","",null);
-}
-catch(e) {alert(e.message)}
-}
-try
-{
-xmlDoc.async=false;
-xmlDoc.load(dname);
-return(xmlDoc);
-}
-catch(e) {alert(e.message)}
-return(null);
-}
-function validate(){
-xmlDoc=loadXMLDoc("data.xml");
-if(window.ActiveXObject){
-var nodes=xmlDoc.documentElement.childNodes;
-var xml_name=nodes[1].childNodes[0].nodeValue;
-var xml_pass=nodes[2].childNodes[0].nodeValue;
-if((xml_name==document.getElementById("input_name").value)&&(xml_pass==document.getElementById("input_pass").value)){
-document.write("successfully login");
-return true;
-}else{
-document.write("name or pass,one is wrong");
-return false;
-}
-}else if(typeof DOMParser!="undefined"){
-var doc=xmlDoc.documentElement;
-var xml_name=doc.childNodes[3].childNodes[0].nodeValue;
-var xml_pass=doc.childNodes[5].childNodes[0].nodeValue;
-if((xml_name==document.getElementById("input_name").value)&&(xml_pass==document.getElementById("input_pass").value)){
-document.write("successfully login");
-return true;
-}else{
-document.write("name or pass,one is wrong");
-return false;
-}
-}
-}
-</script>
+    <div id="panel">
+        <div class="panel-header">
+            <h2>系统</h2>
+        </div>
+        <div class="panel-content">
+           <div class="user-pwd">
+               <img src="images/icon_people.png">
+               <input placeholder="请输入用户名/手机号" name="user">
+           </div>
+           <div class="user-pwd">
+               <img src="images/icon_password.png">
+               <input placeholder="请输入密码" type="password" name="pwd">
+           </div>
+            <div class="setting">
+               <a href="#"><input type="checkbox"> 下次自动登录</a>
+               <a href="#" class="pull-right">忘记密码?</a>
+            </div>
+            <button class="login-btn">登&nbsp;录</button>
+            <div class="reg">
+                还没账号?&nbsp;&nbsp;<a href="#">立即注册</a>
+            </div>
+        </div>
+        <div class="panel-footer">
+             <span>社交账号登录:  </span>
+             <img src="images/sina.png">
+             <img src="images/weixin.png">
+             <img src="images/qq.png">
+        </div>
+    </div>
+
+<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
 </body>
 </html>
