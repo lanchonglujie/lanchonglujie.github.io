@@ -1,2 +1,62 @@
-
-<iframe width="1270" height="600.5" src="https://app.powerbi.com/view?r=eyJrIjoiZDk1NWZhY2UtZWU0YS00YmQ5LTg0NmMtN2Y5NTMzYTk1OTc1IiwidCI6ImE2YjM0OGM2LTAxNjEtNGI1Yy1hODdkLTExYjU5OTBiOTJjNiIsImMiOjZ9" frameborder="0" allowFullScreen="true"></iframe>
+<html>
+<head>
+<style type="text/css">
+</style>
+</head>
+<body>
+name:<input type="text" id="input_name"/>
+pass:<input type="password" id="input_pass"/>
+<input type="button" value="login" onclick="validate()"/>
+<script type="text/javascript">
+function loadXMLDoc(dname)
+{
+try //Internet Explorer
+{
+xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+}
+catch(e)
+{
+try //Firefox, Mozilla, Opera, etc.
+{
+xmlDoc=document.implementation.createDocument("","",null);
+}
+catch(e) {alert(e.message)}
+}
+try
+{
+xmlDoc.async=false;
+xmlDoc.load(dname);
+return(xmlDoc);
+}
+catch(e) {alert(e.message)}
+return(null);
+}
+function validate(){
+xmlDoc=loadXMLDoc("data.xml");
+if(window.ActiveXObject){
+var nodes=xmlDoc.documentElement.childNodes;
+var xml_name=nodes[1].childNodes[0].nodeValue;
+var xml_pass=nodes[2].childNodes[0].nodeValue;
+if((xml_name==document.getElementById("input_name").value)&&(xml_pass==document.getElementById("input_pass").value)){
+document.write("successfully login");
+return true;
+}else{
+document.write("name or pass,one is wrong");
+return false;
+}
+}else if(typeof DOMParser!="undefined"){
+var doc=xmlDoc.documentElement;
+var xml_name=doc.childNodes[3].childNodes[0].nodeValue;
+var xml_pass=doc.childNodes[5].childNodes[0].nodeValue;
+if((xml_name==document.getElementById("input_name").value)&&(xml_pass==document.getElementById("input_pass").value)){
+document.write("successfully login");
+return true;
+}else{
+document.write("name or pass,one is wrong");
+return false;
+}
+}
+}
+</script>
+</body>
+</html>
